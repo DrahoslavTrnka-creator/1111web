@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+<meta charset="UTF-8">
+<title>Fizi video týdne</title>
+<style>
+  body {
+    margin: 0;
+    background: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+  iframe {
+    width: 90vw;
+    height: 90vh;
+    border: none;
+  }
+</style>
+</head>
+<body>
+
+<iframe id="video" allowfullscreen></iframe>
+
+<script>
+// 👉 sem dej YouTube video ID (např. "dQw4w9WgXcQ")
+const videos = [
+  "VIDEO_ID_1",
+  "VIDEO_ID_2",
+  "VIDEO_ID_3",
+  "VIDEO_ID_4"
+];
+
+// zjistí číslo týdne v roce
+function getWeekNumber() {
+  const now = new Date();
+  const start = new Date(now.getFullYear(), 0, 1);
+  const diff = now - start;
+  return Math.floor(diff / (1000 * 60 * 60 * 24 * 7));
+}
+
+// vybere video podle týdne
+const week = getWeekNumber();
+const index = week % videos.length;
+
+const videoId = videos[index];
+
+// vloží YouTube embed (loop 24/7)
+document.getElementById("video").src =
+  `https://www.youtube.com/embed/${videoId}?autoplay=1&loop=1&playlist=${videoId}`;
+</script>
+
+</body>
+</html>
