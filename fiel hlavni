@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>DrahoCraft • Minecraft Server</title>
+
+<style>
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Inter, Arial, sans-serif;
+    background:
+        radial-gradient(circle at 20% 0%, #173c2b 0%, transparent 35%),
+        radial-gradient(circle at 100% 20%, #172b4c 0%, transparent 35%),
+        #070b10;
+    color: #f4f7fb;
+    min-height: 100vh;
+}
+
+.container {
+    width: min(1200px, 94%);
+    margin: auto;
+}
+
+/* HEADER */
+
+header {
+    padding: 35px 0 25px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+.logo-icon {
+    width: 50px;
+    height: 50px;
+    border-radius: 14px;
+    display: grid;
+    place-items: center;
+    font-size: 27px;
+    background: linear-gradient(135deg, #35e77d, #159447);
+    box-shadow: 0 0 30px #35e77d33;
+}
+
+.logo h1 {
+    font-size: 24px;
+}
+
+.logo span {
+    color: #8995a7;
+    font-size: 13px;
+}
+
+.status {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    padding: 10px 15px;
+    border-radius: 999px;
+    background: #102619;
+    border: 1px solid #1e6a39;
+    color: #65ef96;
+    font-size: 14px;
+}
+
+.status-dot {
+    width: 9px;
+    height: 9px;
+    background: #36e77c;
+    border-radius: 50%;
+    box-shadow: 0 0 12px #36e77c;
+}
+
+/* HERO */
+
+.hero {
+    padding: 35px 0 30px;
+}
+
+.hero h2 {
+    font-size: clamp(32px, 6vw, 58px);
+    margin-bottom: 12px;
+}
+
+.hero p {
+    color: #9aa7b9;
+    font-size: 17px;
+}
+
+/* ADDRESS */
+
+.address-card {
+    margin-top: 28px;
+    background: linear-gradient(135deg, #111923, #0d141d);
+    border: 1px solid #263343;
+    border-radius: 20px;
+    padding: 23px;
+}
+
+.address-label {
+    color: #8795a7;
+    font-size: 13px;
+    margin-bottom: 10px;
+}
+
+.address {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+}
+
+.address code {
+    font-size: clamp(18px, 3vw, 27px);
+    color: #6ff395;
+    font-family: monospace;
+}
+
+.copy {
+    border: 0;
+    background: #1b2b3d;
+    color: white;
+    padding: 11px 16px;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.copy:hover {
+    background: #263d55;
+}
+
+/* GRID */
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 15px;
+    margin-top: 18px;
+}
+
+.card {
+    background: rgba(14, 21, 30, .88);
+    border: 1px solid #263343;
+    border-radius: 18px;
+    padding: 21px;
+}
+
+.card-label {
+    color: #7f8da0;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: .8px;
+}
+
+.card-value {
+    margin-top: 9px;
+    font-size: 21px;
+    font-weight: 700;
+}
+
+.card-small {
+    margin-top: 5px;
+    color: #718096;
+    font-size: 13px;
+}
+
+/* SECTION */
+
+section {
+    margin-top: 35px;
+}
+
+.section-title {
+    font-size: 23px;
+    margin-bottom: 15px;
+}
+
+/* PERFORMANCE */
+
+.performance {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 15px;
+}
+
+.metric {
+    background: #0e151e;
+    border: 1px solid #263343;
+    border-radius: 18px;
+    padding: 22px;
+}
+
+.metric-title {
+    color: #7e8c9e;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.metric-value {
+    margin-top: 10px;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.metric-sub {
+    margin-top: 6px;
+    color: #7d8999;
+    font-size: 13px;
+}
+
+/* MODS */
+
+.mods {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+}
+
+.mod {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #0e151e;
+    border: 1px solid #263343;
+    padding: 17px;
+    border-radius: 15px;
+}
+
+.mod-name {
+    font-weight: bold;
+}
+
+.mod-file {
+    color: #748195;
+    font-size: 12px;
+    margin-top: 5px;
+}
+
+.badge {
+    color: #65ed91;
+    background: #102a1b;
+    border: 1px solid #1c5b34;
+    padding: 6px 9px;
+    border-radius: 8px;
+    font-size: 11px;
+}
+
+/* FOOTER */
+
+footer {
+    padding: 50px 0 30px;
+    text-align: center;
+    color: #5e6b7d;
+    font-size: 13px;
+}
+
+@media(max-width: 850px) {
+    .grid,
+    .performance {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .mods {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media(max-width: 550px) {
+    header {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .grid,
+    .performance {
+        grid-template-columns: 1fr;
+    }
+
+    .address {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .address code {
+        word-break: break-all;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<header>
+
+<div class="logo">
+    <div class="logo-icon">⛏️</div>
+
+    <div>
+        <h1>DrahoCraft</h1>
+        <span>Minecraft Java Server</span>
+    </div>
+</div>
+
+<div class="status">
+    <div class="status-dot"></div>
+    Server healthy and responding
+</div>
+
+</header>
+
+
+<div class="hero">
+
+<h2>Minecraft Server</h2>
+
+<p>
+    Informace o serveru, výkonu a nainstalovaných modech.
+</p>
+
+
+<div class="address-card">
+
+<div class="address-label">
+    SERVER ADDRESS
+</div>
+
+<div class="address">
+
+<code id="serverAddress">
+della-illustrated.tun.ply.gg
+</code>
+
+<button class="copy" onclick="copyIP()">
+    📋 Kopírovat
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+
+<!-- SERVER INFO -->
+
+<section>
+
+<div class="section-title">
+    🖥️ Server Info
+</div>
+
+<div class="grid">
+
+<div class="card">
+    <div class="card-label">Minecraft</div>
+    <div class="card-value">1.21.11</div>
+    <div class="card-small">Java Edition</div>
+</div>
+
+<div class="card">
+    <div class="card-label">Java</div>
+    <div class="card-value">Java 25</div>
+    <div class="card-small">Runtime</div>
+</div>
+
+<div class="card">
+    <div class="card-label">Mod Loader</div>
+    <div class="card-value">Fabric</div>
+    <div class="card-small">Fabric Loader 0.19.5</div>
+</div>
+
+<div class="card">
+    <div class="card-label">Players</div>
+    <div class="card-value">0 / 200</div>
+    <div class="card-small">No players online</div>
+</div>
+
+</div>
+
+</section>
+
+
+<!-- PERFORMANCE -->
+
+<section>
+
+<div class="section-title">
+    ⚡ Performance
+</div>
+
+<div class="performance">
+
+<div class="metric">
+    <div class="metric-title">MEMORY</div>
+    <div class="metric-value">3.63 / 9.8 GB</div>
+    <div class="metric-sub">37.2% used</div>
+</div>
+
+<div class="metric">
+    <div class="metric-title">CPU</div>
+    <div class="metric-value">3.1%</div>
+    <div class="metric-sub">Current usage</div>
+</div>
+
+<div class="metric">
+    <div class="metric-title">STORAGE</div>
+    <div class="metric-value">891.91 MB</div>
+    <div class="metric-sub">0.2% of 456.35 GB</div>
+</div>
+
+<div class="metric">
+    <div class="metric-title">TPS</div>
+    <div class="metric-value">0.0</div>
+    <div class="metric-sub">No players online</div>
+</div>
+
+</div>
+
+</section>
+
+
+<!-- MODS -->
+
+<section>
+
+<div class="section-title">
+    🧩 Installed Mods
+</div>
+
+<div class="mods">
+
+<div class="mod">
+<div>
+    <div class="mod-name">ForgeConfigAPIPort</div>
+    <div class="mod-file">
+        ForgeConfigAPIPort-v21.11.1-mc1.21.11-Fabric.jar
+    </div>
+</div>
+<div class="badge">Fabric</div>
+</div>
+
+
+<div class="mod">
+<div>
+    <div class="mod-name">Balm</div>
+    <div class="mod-file">
+        balm-fabric-1.21.11-21.11.9.1.jar
+    </div>
+</div>
+<div class="badge">Fabric</div>
+</div>
+
+
+<div class="mod">
+<div>
+    <div class="mod-name">Fabric API</div>
+    <div class="mod-file">
+        fabric-api-0.141.6+1.21.11.jar
+    </div>
+</div>
+<div class="badge">Core</div>
+</div>
+
+
+<div class="mod">
+<div>
+    <div class="mod-name">Waystones</div>
+    <div class="mod-file">
+        waystones-fabric-1.21.11-21.11.9.jar
+    </div>
+</div>
+<div class="badge">Fabric</div>
+</div>
+
+
+<div class="mod">
+<div>
+    <div class="mod-name">WorldEdit</div>
+    <div class="mod-file">
+        worldedit-mod-7.4.2.jar
+    </div>
+</div>
+<div class="badge">Fabric</div>
+</div>
+
+
+<div class="mod">
+<div>
+    <div class="mod-name">Xaero World Map</div>
+    <div class="mod-file">
+        xaeroworldmap-fabric-1.21.11-1.46.0.jar
+    </div>
+</div>
+<div class="badge">Fabric</div>
+</div>
+
+</div>
+
+</section>
+
+
+<!-- SERVER ID -->
+
+<section>
+
+<div class="card">
+
+<div class="card-label">
+    SERVER ID
+</div>
+
+<div class="card-value" style="font-family:monospace;font-size:15px">
+446948cc-485e-494d-8ef8-5a006e67d2fd
+</div>
+
+</div>
+
+</section>
+
+
+<footer>
+DrahoCraft • Minecraft 1.21.11 • Fabric • Powered by Playit.gg
+</footer>
+
+</div>
+
+
+<script>
+
+function copyIP() {
+
+    const ip =
+        document.getElementById("serverAddress").innerText.trim();
+
+    navigator.clipboard.writeText(ip);
+
+    const button =
+        document.querySelector(".copy");
+
+    button.innerText = "✓ Zkopírováno!";
+
+    setTimeout(() => {
+        button.innerText = "📋 Kopírovat";
+    }, 1500);
+}
+
+</script>
+
+</body>
+</html>
